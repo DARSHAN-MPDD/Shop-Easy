@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin products management for ShopEasy. Add, edit, or delete products in your inventory.">
+    <meta name="keywords" content="admin products, product management, inventory, add product, edit product, delete product">
+    <title>Manage Products - ShopEasy Admin</title>
+    <link rel="stylesheet" href="styles/main.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ShopEasy Admin</div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="admin-products.html" class="active"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="admin-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="admin-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            </ul>
+            <div class="admin-actions">
+                <span>Welcome, Admin</span>
+                <a href="admin-login.html">Logout</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="admin-products">
+            <div class="container">
+                <div class="products-header">
+                    <h1>Manage Products</h1>
+                    <button class="add-product-button">+ Add New Product</button>
+                </div>
+                
+                <div class="products-container">
+                    <!-- Products Table -->
+                    <div class="products-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="product-info">
+                                            <div class="product-image">
+                                                <img src="assets/headphones.jpg" alt="Wireless Headphones">
+                                            </div>
+                                            <div class="product-name">Wireless Headphones</div>
+                                        </div>
+                                    </td>
+                                    <td>Electronics</td>
+                                    <td>₹7,499.25</td>
+                                    <td>50</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="edit-button">Edit</button>
+                                        <button class="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-info">
+                                            <div class="product-image">
+                                                <img src="assets/smartwatch.jpg" alt="Smart Watch">
+                                            </div>
+                                            <div class="product-name">Smart Watch</div>
+                                        </div>
+                                    </td>
+                                    <td>Electronics</td>
+                                    <td>₹14,999.25</td>
+                                    <td>25</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="edit-button">Edit</button>
+                                        <button class="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-info">
+                                            <div class="product-image">
+                                                <img src="assets/speaker.jpg" alt="Bluetooth Speaker">
+                                            </div>
+                                            <div class="product-name">Bluetooth Speaker</div>
+                                        </div>
+                                    </td>
+                                    <td>Electronics</td>
+                                    <td>₹5,999.25</td>
+                                    <td>0</td>
+                                    <td><span class="status out-of-stock">Out of Stock</span></td>
+                                    <td>
+                                        <button class="edit-button">Edit</button>
+                                        <button class="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-info">
+                                            <div class="product-image">
+                                                <img src="assets/backpack.jpg" alt="Laptop Backpack">
+                                            </div>
+                                            <div class="product-name">Laptop Backpack</div>
+                                        </div>
+                                    </td>
+                                    <td>Accessories</td>
+                                    <td>₹4,499.25</td>
+                                    <td>100</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="edit-button">Edit</button>
+                                        <button class="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Add/Edit Product Form (Hidden by default) -->
+                    <div class="product-form" id="product-form" style="display: none;">
+                        <h2 id="form-title">Add New Product</h2>
+                        <form id="product-form-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="product-name">Product Name *</label>
+                                    <input type="text" id="product-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-category">Category *</label>
+                                    <select id="product-category" required>
+                                        <option value="">Select Category</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="clothing">Clothing</option>
+                                        <option value="home">Home & Kitchen</option>
+                                        <option value="beauty">Beauty</option>
+                                        <option value="accessories">Accessories</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="product-price">Price *</label>
+                                    <input type="number" id="product-price" step="0.01" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-stock">Stock Quantity *</label>
+                                    <input type="number" id="product-stock" min="0" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-description">Description</label>
+                                <textarea id="product-description" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-image">Product Image</label>
+                                <input type="file" id="product-image" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="save-button">Save Product</button>
+                                <button type="button" class="cancel-button" id="cancel-product">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+    </footer>
+    <script src="scripts/admin-products.js"></script>
+</body>
+</html>

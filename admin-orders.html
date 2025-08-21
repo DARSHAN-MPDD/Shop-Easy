@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin orders management for ShopEasy. View, update, and manage customer orders.">
+    <meta name="keywords" content="admin orders, order management, customer orders, order status, shipping">
+    <title>Manage Orders - ShopEasy Admin</title>
+    <link rel="stylesheet" href="styles/main.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ShopEasy Admin</div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="admin-products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="admin-orders.html" class="active"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="admin-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            </ul>
+            <div class="admin-actions">
+                <span>Welcome, Admin</span>
+                <a href="admin-login.html">Logout</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="admin-orders">
+            <div class="container">
+                <h1>Manage Orders</h1>
+                
+                <div class="orders-container">
+                    <!-- Orders Table -->
+                    <div class="orders-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#12345</td>
+                                    <td>John Doe</td>
+                                    <td>2023-06-15</td>
+                                    <td>₹14,999.25</td>
+                                    <td>
+                                        <select class="status-select" data-order-id="12345">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing" selected>Processing</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="view-button">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12344</td>
+                                    <td>Jane Smith</td>
+                                    <td>2023-06-14</td>
+                                    <td>₹6,749.25</td>
+                                    <td>
+                                        <select class="status-select" data-order-id="12344">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="shipped" selected>Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="view-button">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12343</td>
+                                    <td>Robert Johnson</td>
+                                    <td>2023-06-14</td>
+                                    <td>₹11,249.25</td>
+                                    <td>
+                                        <select class="status-select" data-order-id="12343">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing" selected>Processing</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="view-button">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12342</td>
+                                    <td>Emily Davis</td>
+                                    <td>2023-06-13</td>
+                                    <td>₹5,999.25</td>
+                                    <td>
+                                        <select class="status-select" data-order-id="12342">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered" selected>Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="view-button">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12341</td>
+                                    <td>Michael Wilson</td>
+                                    <td>2023-06-12</td>
+                                    <td>₹22,499.25</td>
+                                    <td>
+                                        <select class="status-select" data-order-id="12341">
+                                            <option value="pending" selected>Pending</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="view-button">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+    </footer>
+    <script src="scripts/admin-orders.js"></script>
+</body>
+</html>

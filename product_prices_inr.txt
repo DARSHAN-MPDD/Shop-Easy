@@ -1,0 +1,29 @@
+Product Prices in Indian Rupees (INR):
+
+1. Wireless Headphones: ₹7,499.25
+2. Smart Watch: ₹14,999.25
+3. Bluetooth Speaker: ₹5,999.25
+4. Laptop Backpack: ₹4,499.25
+5. Cotton T-Shirt: ₹1,499.25
+6. Coffee Maker: ₹6,749.25
+7. Blender: ₹3,749.25
+8. Face Cream: ₹2,249.25
+9. Lipstick Set: ₹2,999.25
+10. Desk Lamp: ₹2,624.25
+11. Smartphone: ₹52,499.25
+12. Running Shoes: ₹6,749.25
+13. Yoga Mat: ₹1,874.25
+14. Perfume: ₹3,749.25
+15. Wireless Charger: ₹2,624.25
+16. Gaming Mouse: ₹4,499.25
+17. Yoga Pants: ₹2,999.25
+18. Air Purifier: ₹9,749.25
+19. Vitamin Supplements: ₹1,874.25
+20. Bluetooth Earbuds: ₹5,999.25
+21. Hooded Sweatshirt: ₹3,749.25
+22. Coffee Grinder: ₹3,374.25
+23. Sunscreen Lotion: ₹1,499.25
+24. Tablet Stand: ₹2,249.25
+25. Denim Jacket: ₹5,249.25
+
+Note: Prices are converted using an exchange rate of 1 USD = 75 INR.

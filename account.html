@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your account page with login/signup, order history, saved addresses, and wishlist. Manage your personal information and preferences.">
+  <meta name="keywords" content="account, login, signup, order history, saved addresses, wishlist, personal information">
+  <title>Account - ShopEasy</title>
+  <link rel="stylesheet" href="styles/main.css?v=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <base href="/">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ShopEasy</div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
+                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search products...">
+                <button>Search</button>
+            </div>
+            <div class="login-icon" id="loginIcon">
+                <span><i class="fas fa-user"></i></span>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html" style="text-decoration: none; color: inherit;">
+                    <span>Cart (0)</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="account">
+            <div class="container">
+                <h1>My Account</h1>
+                
+                <div class="account-container">
+                    <!-- Login/Signup Section -->
+                    <div class="account-section" id="auth-section">
+                        <div class="auth-tabs">
+                            <button class="tab-button active" data-tab="login">Login</button>
+                            <button class="tab-button" data-tab="signup">Sign Up</button>
+                        </div>
+                        
+                        <div class="auth-form active" id="login-form">
+                            <h2>Login to Your Account</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="login-email">Email Address *</label>
+                                    <input type="email" id="login-email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">Password *</label>
+                                    <input type="password" id="login-password" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="auth-button">Login</button>
+                                </div>
+                                <a href="#" class="forgot-password">Forgot Password?</a>
+                            </form>
+                        </div>
+                        
+                        <div class="auth-form" id="signup-form">
+                            <h2>Create an Account</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="signup-email">Email Address *</label>
+                                    <input type="email" id="signup-email" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="signup-first-name">First Name *</label>
+                                        <input type="text" id="signup-first-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup-last-name">Last Name *</label>
+                                        <input type="text" id="signup-last-name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-password">Password *</label>
+                                    <input type="password" id="signup-password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-confirm-password">Confirm Password *</label>
+                                    <input type="password" id="signup-confirm-password" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="auth-button">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Dashboard (Hidden by default) -->
+                    <div class="account-section" id="account-dashboard" style="display: none;">
+                        <h2>Account Dashboard</h2>
+                        <div class="dashboard-content">
+                            <div class="dashboard-items">
+                                <div class="dashboard-item">
+                                    <h3>📦 Order History</h3>
+                                    <div class="order-history">
+                                        <div class="order-item">
+                                            <div class="order-details">
+                                                <div class="order-id">Order #12345</div>
+                                                <div class="order-date">June 15, 2023</div>
+                                                <div class="order-total">₹14,999.25</div>
+                                                <div class="order-status">Delivered</div>
+                                            </div>
+                                            <div class="order-actions">
+                                                <button class="view-order">View Details</button>
+                                            </div>
+                                        </div>
+                                        <div class="order-item">
+                                            <div class="order-details">
+                                                <div class="order-id">Order #12344</div>
+                                                <div class="order-date">June 14, 2023</div>
+                                                <div class="order-total">₹6,749.25</div>
+                                                <div class="order-status">Shipped</div>
+                                            </div>
+                                            <div class="order-actions">
+                                                <button class="view-order">View Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="dashboard-item">
+                                    <h3>🏠 Saved Addresses</h3>
+                                    <div class="saved-addresses">
+                                        <div class="address-item">
+                                            <div class="address-details">
+                                                <div class="address-name">Home Address</div>
+                                                <div class="address-line">123 Main Street</div>
+                                                <div class="address-line">New York, NY 10001</div>
+                                                <div class="address-line">United States</div>
+                                            </div>
+                                            <div class="address-actions">
+                                                <button class="edit-address">Edit</button>
+                                                <button class="delete-address">Delete</button>
+                                            </div>
+                                        </div>
+                                        <div class="add-new-address">
+                                            <button class="add-address-button">+ Add New Address</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="dashboard-item">
+                                    <h3>❤️ Wishlist</h3>
+                                    <div class="wishlist-items">
+                                        <div class="wishlist-item">
+                                            <div class="item-image">
+                                                <img src="assets/headphones.jpg" alt="Wireless Headphones">
+                                            </div>
+                                            <div class="item-details">
+                                                <h4>Wireless Headphones</h4>
+                                                <div class="item-price">₹7,499.25</div>
+                                            </div>
+                                            <div class="item-actions">
+                                                <button class="move-to-cart">Move to Cart</button>
+                                                <button class="remove-item">Remove</button>
+                                            </div>
+                                        </div>
+                                        <div class="wishlist-item">
+                                            <div class="item-image">
+                                                <img src="assets/smartwatch.jpg" alt="Smart Watch">
+<script>
+        // Update cart count when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartCountElement = document.querySelector('.cart-icon span');
+            if (cartCountElement) {
+                // Get cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = `Cart (${totalItems})`;
+            }
+        });
+    </script>
+                                            </div>
+                                            <div class="item-details">
+                                                <h4>Smart Watch</h4>
+                                                <div class="item-price">₹14,999.25</div>
+                                            </div>
+                                            <div class="item-actions">
+                                                <button class="move-to-cart">Move to Cart</button>
+                                                <button class="remove-item">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+    </footer>
+    <script src="scripts/account.js"></script>
+</body>
+</html>

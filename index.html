@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShopEasy - Your one-stop online shop for the best products at amazing prices. Find electronics, clothing, home goods, and beauty products.">
+    <meta name="keywords" content="e-commerce, online shopping, electronics, clothing, home goods, beauty products">
+    <title>ShopEasy - Online Shopping</title>
+    <link rel="stylesheet" href="styles/main.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ShopEasy</div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
+                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <button id="search-button">Search</button>
+                <div class="search-suggestions" id="search-suggestions"></div>
+            </div>
+            <div class="login-icon" id="loginIcon">
+                <span><i class="fas fa-user"></i> Login</span>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html" style="text-decoration: none; color: inherit;">
+                    <span>Cart (0)</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero fade-in">
+            <h1 class="fade-in-up">Welcome to ShopEasy</h1>
+            <p class="fade-in-up delay-1">Find the best products at the best prices</p>
+            <button class="fade-in-up delay-2">Shop Now</button>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories fade-in-up">
+            <h2 class="fade-in-up">Shop by Category</h2>
+            <div class="category-grid">
+                <a href="electronics.html" class="category-link">
+                    <div class="category-card animated delay-1">
+                        <div class="category-image">
+                            <img src="assets/electronics.jpg" alt="Electronics">
+                        </div>
+                        <h3>Electronics</h3>
+                    </div>
+                </a>
+                <a href="clothing.html" class="category-link">
+                    <div class="category-card animated delay-2">
+                        <div class="category-image">
+                            <img src="assets/clothing.jpg" alt="Clothing">
+                        </div>
+                        <h3>Clothing</h3>
+                    </div>
+                </a>
+                <a href="home.html" class="category-link">
+                    <div class="category-card animated delay-3">
+                        <div class="category-image">
+                            <img src="assets/home.jpg" alt="Home & Kitchen">
+                        </div>
+                        <h3>Home & Kitchen</h3>
+                    </div>
+                </a>
+                <a href="beauty.html" class="category-link">
+                    <div class="category-card animated delay-4">
+                        <div class="category-image">
+                            <img src="assets/beauty.jpg" alt="Beauty">
+                        </div>
+                        <h3>Beauty</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Promotional Banner -->
+        <section class="promo-banner fade-in-up delay-5">
+            <h2>Summer Sale - Up to 50% Off!</h2>
+            <p>Limited time offer on selected items</p>
+            <button>Shop the Sale</button>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="featured-products fade-in-up">
+            <h2 class="fade-in-up">Featured Products</h2>
+            <div class="product-grid">
+                <!-- Product items will be added here by JavaScript -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+<script>
+        // Update cart count when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartCountElement = document.querySelector('.cart-icon span');
+            if (cartCountElement) {
+                // Get cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = `Cart (${totalItems})`;
+            }
+        });
+    </script>

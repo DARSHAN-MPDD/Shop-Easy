@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product details page with images, description, specifications, price, and stock availability for Wireless Bluetooth Headphones.">
+    <meta name="keywords" content="product details, wireless headphones, bluetooth headphones, electronics, audio equipment">
+    <title>Wireless Bluetooth Headphones - ShopEasy</title>
+    <link rel="stylesheet" href="styles/main.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ShopEasy</div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
+                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search products...">
+                <button>Search</button>
+            </div>
+            <div class="login-icon" id="loginIcon">
+                <span><i class="fas fa-user"></i></span>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html" style="text-decoration: none; color: inherit;">
+                    <span>Cart (0)</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="product-details">
+            <div class="container">
+                <div class="product-container">
+                    <!-- Product Images -->
+                    <div class="product-images">
+                        <div class="main-image">
+                            <img src="assets/product-main.jpg" alt="Wireless Bluetooth Headphones">
+                        </div>
+                        <div class="thumbnail-images">
+                            <img src="assets/product-thumb1.jpg" alt="Wireless Bluetooth Headphones - Front View">
+                            <img src="assets/product-thumb2.jpg" alt="Wireless Bluetooth Headphones - Side View">
+                            <img src="assets/product-thumb3.jpg" alt="Wireless Bluetooth Headphones - Back View">
+                        </div>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div class="product-info">
+                        <h1>Wireless Bluetooth Headphones</h1>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.8 (128 reviews)</span>
+                        </div>
+                        <div class="product-price">₹6,749.25</div>
+                        <div class="product-stock in-stock">In Stock (50+ items available)</div>
+                        
+                        <div class="product-description">
+                            <h2>Description</h2>
+                            <p>Experience crystal-clear sound with our premium wireless Bluetooth headphones. Featuring noise cancellation technology, these headphones provide an immersive audio experience. With up to 30 hours of battery life, comfortable over-ear design, and intuitive touch controls, they're perfect for music lovers on the go.</p>
+                        </div>
+                        
+                        <div class="product-specifications">
+                            <h2>Specifications</h2>
+                            <ul>
+                                <li>Bluetooth Version: 5.2</li>
+                                <li>Battery Life: Up to 30 hours</li>
+                                <li>Charging Time: 2 hours</li>
+                                <li>Weight: 250g</li>
+                                <li>Frequency Response: 20Hz - 20kHz</li>
+                                <li>Impedance: 32 Ohms</li>
+                                <li>Driver Size: 40mm</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <label for="quantity">Quantity:</label>
+                                <select id="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="wishlist">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Products -->
+                <div class="related-products">
+                    <h2>You May Also Like</h2>
+                    <div class="product-grid">
+                        <!-- Related products will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+    </footer>
+<script>
+        // Update cart count when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartCountElement = document.querySelector('.cart-icon span');
+            if (cartCountElement) {
+                // Get cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = `Cart (${totalItems})`;
+            }
+        });
+    </script>
+    <script src="scripts/product-details.js"></script>
+</body>
+</html>

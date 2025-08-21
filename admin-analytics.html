@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin analytics for ShopEasy. View sales trends, revenue by category, and top selling products.">
+    <meta name="keywords" content="admin analytics, sales analytics, revenue, sales trends, top products, business insights">
+    <title>Analytics - ShopEasy Admin</title>
+    <link rel="stylesheet" href="styles/main.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ShopEasy Admin</div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="admin-products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="admin-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="admin-analytics.html" class="active"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            </ul>
+            <div class="admin-actions">
+                <span>Welcome, Admin</span>
+                <a href="admin-login.html">Logout</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="admin-analytics">
+            <div class="container">
+                <h1>Analytics</h1>
+                
+                <div class="analytics-container">
+                    <!-- Date Range Selector -->
+                    <div class="date-range-selector">
+                        <label for="date-range">Select Date Range:</label>
+                        <select id="date-range">
+                            <option value="7">Last 7 Days</option>
+                            <option value="30" selected>Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                            <option value="365">Last Year</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Sales Chart -->
+                    <div class="analytics-section">
+                        <h2>Sales Overview</h2>
+                        <div class="chart-container">
+                            <canvas id="sales-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Revenue by Category -->
+                    <div class="analytics-section">
+                        <h2>Revenue by Category</h2>
+                        <div class="chart-container">
+                            <canvas id="category-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Top Products -->
+                    <div class="analytics-section">
+                        <h2>Top Selling Products</h2>
+                        <div class="top-products">
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <img src="assets/headphones.jpg" alt="Wireless Headphones">
+                                </div>
+                                <div class="product-info">
+                                    <h4>Wireless Headphones</h4>
+                                    <div class="product-sales">124 sold</div>
+                                    <div class="product-revenue">₹929,982.00</div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <img src="assets/smartwatch.jpg" alt="Smart Watch">
+                                </div>
+                                <div class="product-info">
+                                    <h4>Smart Watch</h4>
+                                    <div class="product-sales">98 sold</div>
+                                    <div class="product-revenue">₹1,469,926.50</div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <img src="assets/speaker.jpg" alt="Bluetooth Speaker">
+                                </div>
+                                <div class="product-info">
+                                    <h4>Bluetooth Speaker</h4>
+                                    <div class="product-sales">87 sold</div>
+                                    <div class="product-revenue">₹521,934.75</div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <img src="assets/backpack.jpg" alt="Laptop Backpack">
+                                </div>
+                                <div class="product-info">
+                                    <h4>Laptop Backpack</h4>
+                                    <div class="product-sales">76 sold</div>
+                                    <div class="product-revenue">₹341,943.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/admin-analytics.js"></script>
+</body>
+</html>
