@@ -58,7 +58,7 @@ function renderProductsTable() {
                 </div>
             </td>
             <td>${product.category}</td>
-            <td>$${product.price.toFixed(2)}</td>
+            <td>₹${(product.price * 75).toFixed(2)}</td>
             <td>${product.stock}</td>
             <td><span class="status ${product.status}">${product.status === 'active' ? 'Active' : 'Out of Stock'}</span></td>
             <td>

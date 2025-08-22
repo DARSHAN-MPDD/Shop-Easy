@@ -1,83 +1,274 @@
-// Sample product data
-const product = {
-    id: 1,
-    name: "Wireless Bluetooth Headphones",
-    price: 89.99,
-    images: [
-        "product-main.jpg",
-        "product-thumb1.jpg",
-        "product-thumb2.jpg",
-        "product-thumb3.jpg"
-    ],
-    description: "Experience crystal-clear sound with our premium wireless Bluetooth headphones. Featuring noise cancellation technology, these headphones provide an immersive audio experience. With up to 30 hours of battery life, comfortable over-ear design, and intuitive touch controls, they're perfect for music lovers on the go.",
-    specifications: [
-        "Bluetooth Version: 5.2",
-        "Battery Life: Up to 30 hours",
-        "Charging Time: 2 hours",
-        "Weight: 250g",
-        "Frequency Response: 20Hz - 20kHz",
-        "Impedance: 32 Ohms",
-        "Driver Size: 40mm"
-    ],
-    rating: 4.8,
-    reviews: 128,
-    stock: 50
-};
-
-// Sample related products data
-const relatedProducts = [
+// Import products array from products.js
+// Since we can't directly import it, we'll include it in this file for now
+const products = [
+    {
+        id: 1,
+        name: "Wireless Headphones",
+        price: 99.99,
+        image: "wireless-headphones.jpg",
+        description: "High-quality wireless headphones with noise cancellation.",
+        category: "electronics",
+        rating: 4.5
+    },
     {
         id: 2,
         name: "Smart Watch",
         price: 199.99,
-        image: "smartwatch.jpg",
+        image: "smart-watch.jpg",
+        description: "Feature-rich smartwatch with health monitoring.",
+        category: "electronics",
         rating: 4.7
     },
     {
         id: 3,
         name: "Bluetooth Speaker",
         price: 79.99,
-        image: "speaker.jpg",
+        image: "bluetooth-speaker.jpg",
+        description: "Portable Bluetooth speaker with excellent sound quality.",
+        category: "electronics",
         rating: 4.3
     },
     {
         id: 4,
         name: "Laptop Backpack",
         price: 59.99,
-        image: "backpack.jpg",
+        image: "laptop-backpack.jpg",
+        description: "Durable backpack with laptop compartment and USB charging port.",
+        category: "clothing",
         rating: 4.2
     },
     {
         id: 5,
         name: "Cotton T-Shirt",
         price: 19.99,
-        image: "tshirt.jpg",
+        image: "cotton-t-shirt.jpg",
+        description: "Comfortable cotton t-shirt in various colors.",
+        category: "clothing",
         rating: 4.0
+    },
+    {
+        id: 6,
+        name: "Coffee Maker",
+        price: 89.99,
+        image: "Coffee Maker.jpg",
+        description: "Automatic coffee maker with programmable settings.",
+        category: "home",
+        rating: 4.6
+    },
+    {
+        id: 7,
+        name: "Blender",
+        price: 49.99,
+        image: "blender.jpg",
+        description: "High-speed blender for smoothies and more.",
+        category: "home",
+        rating: 4.1
+    },
+    {
+        id: 8,
+        name: "Face Cream",
+        price: 29.99,
+        image: "Face Cream.jpg",
+        description: "Moisturizing face cream with natural ingredients.",
+        category: "beauty",
+        rating: 4.4
+    },
+    {
+        id: 9,
+        name: "Lipstick Set",
+        price: 39.99,
+        image: "lipstick-set.jpg",
+        description: "Set of 5 premium lipsticks in various shades.",
+        category: "beauty",
+        rating: 4.8
+    },
+    {
+        id: 10,
+        name: "Desk Lamp",
+        price: 34.99,
+        image: "desk-lamp.jpg",
+        description: "Adjustable LED desk lamp with touch controls.",
+        category: "home",
+        rating: 4.3
+    },
+    // New products
+    {
+        id: 11,
+        name: "Vivo",
+        price: 699.99,
+        image: "vivo.jpg",
+        description: "Latest smartphone with advanced camera and long battery life.",
+        category: "electronics",
+        rating: 4.9
+    },
+    {
+        id: 12,
+        name: "Running Shoes",
+        price: 89.99,
+        image: "running-shoes.jpg",
+        description: "Comfortable running shoes with extra cushioning.",
+        category: "clothing",
+        rating: 4.6
+    },
+    {
+        id: 13,
+        name: "Yoga Mat",
+        price: 24.99,
+        image: "yogo.jpg",
+        description: "Non-slip yoga mat with carrying strap.",
+        category: "home",
+        rating: 4.4
+    },
+    {
+        id: 14,
+        name: "Perfume",
+        price: 49.99,
+        image: "perfume.jpg",
+        description: "Long-lasting fragrance with floral notes.",
+        category: "beauty",
+        rating: 4.7
+    },
+    {
+        id: 15,
+        name: "Wireless Charger",
+        price: 34.99,
+        image: "charger.jpg",
+        description: "Fast wireless charging pad for all Qi-enabled devices.",
+        category: "electronics",
+        rating: 4.2
+    },
+    // New products added
+    {
+        id: 16,
+        name: "Gaming Mouse",
+        price: 59.99,
+        image: "logitech-g502-hero.jpg",
+        description: "High-precision gaming mouse with customizable RGB lighting.",
+        category: "electronics",
+        rating: 4.7
+    },
+    {
+        id: 17,
+        name: "Yoga Pants",
+        price: 39.99,
+        image: "yogo pant.jpg",
+        description: "Comfortable and flexible yoga pants with moisture-wicking fabric.",
+        category: "clothing",
+        rating: 4.5
+    },
+    {
+        id: 18,
+        name: "Air Purifier",
+        price: 129.99,
+        image: "air.jpg",
+        description: "HEPA air purifier for cleaner and fresher indoor air.",
+        category: "home",
+        rating: 4.6
+    },
+    {
+        id: 19,
+        name: "Vitamin Supplements",
+        price: 24.99,
+        image: "multivitamin.jpg",
+        description: "Daily multivitamin supplements for overall health and wellness.",
+        category: "beauty",
+        rating: 4.3
+    },
+    {
+        id: 20,
+        name: "Bluetooth Earbuds",
+        price: 79.99,
+        image: "earbuds.jpg",
+        description: "True wireless earbuds with noise cancellation and long battery life.",
+        category: "electronics",
+        rating: 4.8
+    },
+    {
+        id: 21,
+        name: "Hooded Sweatshirt",
+        price: 49.99,
+        image: "sweatshirt.jpg",
+        description: "Comfortable hooded sweatshirt available in multiple colors.",
+        category: "clothing",
+        rating: 4.4
+    },
+    {
+        id: 22,
+        name: "Coffee Grinder",
+        price: 44.99,
+        image: "coffee grinder.jpg",
+        description: "Electric coffee grinder with multiple grind settings.",
+        category: "home",
+        rating: 4.2
+    },
+    {
+        id: 23,
+        name: "Sunscreen Lotion",
+        price: 19.99,
+        image: "Face Cream.jpg",
+        description: "SPF 50 sunscreen lotion for daily protection.",
+        category: "beauty",
+        rating: 4.6
+    },
+    {
+        id: 24,
+        name: "Tablet Stand",
+        price: 29.99,
+        image: "phone-Stand.jpg",
+        description: "Adjustable tablet stand for comfortable viewing.",
+        category: "electronics",
+        rating: 4.1
+    },
+    {
+        id: 25,
+        name: "Denim Jacket",
+        price: 69.99,
+        image: "jacket.jpg",
+        description: "Classic denim jacket with a modern fit.",
+        category: "clothing",
+        rating: 4.5
     }
 ];
+
+// Get product ID from URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+const productId = parseInt(urlParams.get('id')) || 1;
+
+// Find the product with the matching ID
+const product = products.find(p => p.id === productId) || products[0];
+
+// If we couldn't find the product, redirect to products page
+if (!product) {
+    window.location.href = 'products.html';
+}
+
+// Get related products from the same category (excluding the current product)
+const relatedProducts = products
+    .filter(p => p.category === product.category && p.id !== product.id)
+    .slice(0, 4);
 
 // Function to initialize product images
 function initProductImages() {
     const mainImage = document.querySelector('.main-image img');
     const thumbnailImages = document.querySelectorAll('.thumbnail-images img');
     
-    if (mainImage && thumbnailImages.length > 0) {
-        // Set the main image to the first image in the array
-        mainImage.src = `assets/${product.images[0]}`;
+    if (mainImage) {
+        // Set the main image
+        mainImage.src = `assets/${product.image}`;
         mainImage.alt = product.name;
-        
-        // Set up thumbnail images
+    }
+    
+    // Set up thumbnail images (using the same image for all thumbnails for now)
+    if (thumbnailImages.length > 0) {
         thumbnailImages.forEach((thumb, index) => {
-            if (index < product.images.length) {
-                thumb.src = `assets/${product.images[index]}`;
-                thumb.alt = `${product.name} ${index + 1}`;
-                
-                // Add click event to change main image
-                thumb.addEventListener('click', function() {
-                    mainImage.src = this.src;
-                    mainImage.alt = this.alt;
-                });
-            }
+            thumb.src = `assets/${product.image}`;
+            thumb.alt = `${product.name} ${index + 1}`;
+            
+            // Add click event to change main image
+            thumb.addEventListener('click', function() {
+                mainImage.src = this.src;
+                mainImage.alt = this.alt;
+            });
         });
     }
 }
@@ -93,7 +284,9 @@ function renderProductInfo() {
     // Update product rating
     const ratingElement = document.querySelector('.product-rating .rating-value');
     if (ratingElement) {
-        ratingElement.textContent = `${product.rating} (${product.reviews} reviews)`;
+        // Use default value of 100 reviews if not specified
+        const reviews = product.reviews || 100;
+        ratingElement.textContent = `${product.rating} (${reviews} reviews)`;
     }
     
     // Update product price (convert from USD to INR, assuming 1 USD = 75 INR)
@@ -106,8 +299,10 @@ function renderProductInfo() {
     // Update stock information
     const stockElement = document.querySelector('.product-stock');
     if (stockElement) {
-        if (product.stock > 0) {
-            stockElement.textContent = `In Stock (${product.stock}+ items available)`;
+        // Use default value of 50 items in stock if not specified
+        const stock = product.stock || 50;
+        if (stock > 0) {
+            stockElement.textContent = `In Stock (${stock}+ items available)`;
             stockElement.className = 'product-stock in-stock';
         } else {
             stockElement.textContent = 'Out of Stock';
@@ -125,7 +320,15 @@ function renderProductInfo() {
     const specsList = document.querySelector('.product-specifications ul');
     if (specsList) {
         specsList.innerHTML = '';
-        product.specifications.forEach(spec => {
+        // Use default specifications if not specified
+        const specifications = product.specifications || [
+            "High-quality material",
+            "Durable construction",
+            "Designed for comfort",
+            "Easy to use",
+            "Comes with warranty"
+        ];
+        specifications.forEach(spec => {
             const li = document.createElement('li');
             li.textContent = spec;
             specsList.appendChild(li);
@@ -156,6 +359,7 @@ function renderRelatedProducts() {
                 <!-- Convert price from USD to INR (assuming 1 USD = 75 INR) -->
                 <div class="product-price">₹${(product.price * 75).toFixed(2)}</div>
                 <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                <button class="buy-now" data-id="${product.id}">Buy Now</button>
             </div>
         `;
         productGrid.appendChild(productCard);
@@ -166,6 +370,23 @@ function renderRelatedProducts() {
         button.addEventListener('click', function() {
             const productId = parseInt(this.getAttribute('data-id'));
             addToCart(productId);
+        });
+    });
+    
+    // Add event listeners to "Buy Now" buttons
+    document.querySelectorAll('.related-products .buy-now').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            // Add animation class to the product card when buying now
+            const productCard = this.closest('.product-card');
+            if (productCard) {
+                productCard.classList.add('buy-now-selected');
+                setTimeout(() => {
+                    productCard.classList.remove('buy-now-selected');
+                }, 1000);
+            }
+            // Redirect to product details page
+            window.location.href = `product-details.html?id=${productId}`;
         });
     });
 }
@@ -236,7 +457,7 @@ function addToCart(productId) {
     // Update cart count in header
     if (cartCountElement) {
         const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-        cartCountElement.textContent = `Cart (${totalItems})`;
+        cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
     }
     
     // Show a notification with animation

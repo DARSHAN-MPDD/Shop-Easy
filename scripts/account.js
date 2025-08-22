@@ -81,6 +81,7 @@ function handleLogin() {
       }
       
       try {
+        console.log('Attempting to login user:', { email });
         // Send login request to backend
         const response = await fetch('/api/auth/login', {
           method: 'POST',
@@ -90,7 +91,11 @@ function handleLogin() {
           body: JSON.stringify({ email, password })
         });
         
+        console.log('Response status:', response.status);
+        console.log('Response headers:', [...response.headers.entries()]);
+        
         const data = await response.json();
+        console.log('Response data:', data);
         
         if (response.ok) {
           // Store token in localStorage
@@ -117,7 +122,12 @@ function handleLogin() {
         }
       } catch (error) {
         console.error('Login error:', error);
-        alert('An error occurred during login. Please try again.');
+        // Provide more detailed error message
+        if (error instanceof TypeError && error.message.includes('fetch')) {
+          alert('Network error: Unable to connect to the server. Please make sure the server is running.');
+        } else {
+          alert('An error occurred during login. Please try again. Error: ' + error.message);
+        }
       }
     });
   }
@@ -149,6 +159,7 @@ function handleSignup() {
       }
       
       try {
+        console.log('Attempting to register user:', { firstName, lastName, email });
         // Send signup request to backend
         const response = await fetch('/api/auth/register', {
           method: 'POST',
@@ -158,7 +169,11 @@ function handleSignup() {
           body: JSON.stringify({ firstName, lastName, email, password, confirmPassword })
         });
         
+        console.log('Response status:', response.status);
+        console.log('Response headers:', [...response.headers.entries()]);
+        
         const data = await response.json();
+        console.log('Response data:', data);
         
         if (response.ok) {
           // Store token in localStorage
@@ -185,7 +200,12 @@ function handleSignup() {
         }
       } catch (error) {
         console.error('Signup error:', error);
-        alert('An error occurred during registration. Please try again.');
+        // Provide more detailed error message
+        if (error instanceof TypeError && error.message.includes('fetch')) {
+          alert('Network error: Unable to connect to the server. Please make sure the server is running.');
+        } else {
+          alert('An error occurred during registration. Please try again. Error: ' + error.message);
+        }
       }
     });
   }
@@ -206,7 +226,7 @@ function renderOrderHistory() {
             <div class="order-details">
                 <div class="order-id">Order #${order.id}</div>
                 <div class="order-date">${order.date}</div>
-                <div class="order-total">$${order.total.toFixed(2)}</div>
+                <div class="order-total">₹${(order.total * 75).toFixed(2)}</div>
                 <div class="order-status">${order.status}</div>
             </div>
             <div class="order-actions">
@@ -268,7 +288,7 @@ function renderWishlist() {
             </div>
             <div class="item-details">
                 <h4>${item.name}</h4>
-                <div class="item-price">$${item.price.toFixed(2)}</div>
+                <div class="item-price">₹${(item.price * 75).toFixed(2)}</div>
             </div>
             <div class="item-actions">
                 <button class="move-to-cart">Move to Cart</button>

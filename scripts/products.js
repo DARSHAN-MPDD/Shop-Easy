@@ -263,6 +263,7 @@ function renderProducts(productsToRender) {
                 </div>
                 <div class="product-price">₹${priceInINR.toFixed(2)}</div>
                 <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                <button class="buy-now" data-id="${product.id}">Buy Now</button>
             </div>
         `;
         productGrid.appendChild(productCard);
@@ -281,6 +282,23 @@ function renderProducts(productsToRender) {
                 }, 1000);
             }
             addToCart(productId);
+        });
+    });
+    
+    // Add event listeners to "Buy Now" buttons
+    document.querySelectorAll('.buy-now').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            // Add animation class to the product card when buying now
+            const productCard = this.closest('.product-card');
+            if (productCard) {
+                productCard.classList.add('buy-now-selected');
+                setTimeout(() => {
+                    productCard.classList.remove('buy-now-selected');
+                }, 1000);
+            }
+            // Redirect to product details page
+            window.location.href = `product-details.html?id=${productId}`;
         });
     });
 }
@@ -384,7 +402,7 @@ function addToCart(productId) {
         // Update cart count in header
         if (cartCountElement) {
             const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-            cartCountElement.textContent = `Cart (${totalItems})`;
+            cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
         }
         
         // Show a notification with animation

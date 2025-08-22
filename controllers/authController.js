@@ -15,24 +15,29 @@ const generateToken = (userId) => {
 // Register new user
 exports.register = async (req, res) => {
   try {
+    console.log('Registration request received:', req.body);
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     // Validation
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      console.log('Validation failed: missing fields');
       return res.status(400).json({ message: 'Please provide all required fields' });
     }
 
     if (password !== confirmPassword) {
+      console.log('Validation failed: passwords do not match');
       return res.status(400).json({ message: 'Passwords do not match' });
     }
 
     // Check if user already exists
     const existingUser = users.find(user => user.email === email);
     if (existingUser) {
+      console.log('Validation failed: user already exists');
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
     // Hash password
+    console.log('Hashing password...');
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -51,9 +56,11 @@ exports.register = async (req, res) => {
     };
 
     users.push(user);
+    console.log('User created:', user);
 
     // Generate token
     const token = generateToken(user.id);
+    console.log('Token generated:', token);
 
     res.status(201).json({
       _id: user.id,
@@ -63,6 +70,7 @@ exports.register = async (req, res) => {
       token
     });
   } catch (error) {
+    console.error('Registration error:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
@@ -70,27 +78,33 @@ exports.register = async (req, res) => {
 // Login user
 exports.login = async (req, res) => {
   try {
+    console.log('Login request received:', req.body);
     const { email, password } = req.body;
 
     // Validation
     if (!email || !password) {
+      console.log('Validation failed: missing email or password');
       return res.status(400).json({ message: 'Please provide email and password' });
     }
 
     // Check for user
     const user = users.find(user => user.email === email);
     if (!user) {
+      console.log('Validation failed: user not found');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     // Check password
+    console.log('Checking password...');
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      console.log('Validation failed: password does not match');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     // Generate token
     const token = generateToken(user.id);
+    console.log('Token generated:', token);
 
     res.json({
       _id: user.id,
@@ -100,6 +114,7 @@ exports.login = async (req, res) => {
       token
     });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };

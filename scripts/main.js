@@ -72,8 +72,9 @@ function renderFeaturedProducts() {
             <div class="product-info">
                 <h3>${product.name}</h3>
                 <p>${product.description}</p>
-                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-price">₹${(product.price * 75).toFixed(2)}</div>
                 <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                <button class="buy-now" data-id="${product.id}">Buy Now</button>
             </div>
         `;
         productGrid.appendChild(productCard);
@@ -84,6 +85,23 @@ function renderFeaturedProducts() {
         button.addEventListener('click', function() {
             const productId = parseInt(this.getAttribute('data-id'));
             addToCart(productId);
+        });
+    });
+    
+    // Add event listeners to "Buy Now" buttons
+    document.querySelectorAll('.buy-now').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            // Add animation class to the product card when buying now
+            const productCard = this.closest('.product-card');
+            if (productCard) {
+                productCard.classList.add('buy-now-selected');
+                setTimeout(() => {
+                    productCard.classList.remove('buy-now-selected');
+                }, 1000);
+            }
+            // Redirect to product details page
+            window.location.href = `product-details.html?id=${productId}`;
         });
     });
 }
@@ -136,7 +154,7 @@ function addToCart(productId) {
     if (cartCountElement) {
         let count = parseInt(cartCountElement.textContent.match(/\d+/)[0]);
         count++;
-        cartCountElement.textContent = `Cart (${count})`;
+        cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${count})`;
         
         // Add animation class to cart icon
         cartCountElement.classList.add('updated');
@@ -224,7 +242,7 @@ function showSearchSuggestions(products, suggestionsContainer) {
                 </div>
                 <div class="search-suggestion-text">
                     <div class="search-suggestion-name">${product.name}</div>
-                    <div class="search-suggestion-price">$${product.price.toFixed(2)}</div>
+                    <div class="search-suggestion-price">₹${(product.price * 75).toFixed(2)}</div>
                 </div>
             `;
             

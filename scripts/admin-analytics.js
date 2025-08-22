@@ -177,7 +177,7 @@ function renderTopProducts() {
             <div class="product-info">
                 <h4>${product.name}</h4>
                 <div class="product-sales">${product.sales} sold</div>
-                <div class="product-revenue">$${product.revenue.toFixed(2)}</div>
+                <div class="product-revenue">₹${(product.revenue * 75).toFixed(2)}</div>
             </div>
         `;
         topProductsContainer.appendChild(productItem);

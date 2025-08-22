@@ -87,6 +87,12 @@ nav ul li a:hover {
 
 .cart-icon {
     font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon i {
+    margin-right: 5px;
 }
 
 /* Hero Section */
@@ -320,6 +326,50 @@ nav ul li a:hover {
 
 .add-to-cart:active {
     animation: buttonClick 0.3s ease;
+}
+
+/* Buy Now Button Styles */
+.buy-now {
+    padding: 0.7rem 1.5rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.buy-now:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.buy-now:active {
+    animation: buttonClick 0.3s ease;
+}
+
+/* Product Selection Animation for Buy Now */
+@keyframes productBuyNowSelect {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+}
+
+.product-card.buy-now-selected {
+    animation: productBuyNowSelect 0.5s ease-in-out;
 }
 
 .product-image {

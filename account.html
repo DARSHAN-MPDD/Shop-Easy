@@ -8,7 +8,6 @@
   <title>Account - ShopEasy</title>
   <link rel="stylesheet" href="styles/main.css?v=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <base href="/">
 </head>
 <body>
     <header>
@@ -30,7 +29,7 @@
             </div>
             <div class="cart-icon">
                 <a href="cart.html" style="text-decoration: none; color: inherit;">
-                    <span>Cart (0)</span>
+                    <span><i class="fas fa-shopping-cart"></i> Cart</span>
                 </a>
             </div>
         </nav>
@@ -179,7 +178,7 @@
                 // Get cart items from localStorage
                 const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
                 const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-                cartCountElement.textContent = `Cart (${totalItems})`;
+                cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
             }
         });
     </script>

@@ -185,7 +185,7 @@ function updateCartCount() {
     const cartCountElement = document.querySelector('.cart-icon span');
     if (cartCountElement) {
         const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-        cartCountElement.textContent = `Cart (${totalItems})`;
+        cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
     }
 }
 

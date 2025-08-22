@@ -242,10 +242,10 @@ function populateOrderSummary() {
     const taxElement = document.querySelector('.summary-item:nth-child(3) span:last-child');
     const totalElement = document.querySelector('.summary-item.total span:last-child');
     
-    if (subtotalElement) subtotalElement.textContent = `$${checkoutData.orderSummary.subtotal.toFixed(2)}`;
-    if (shippingElement) shippingElement.textContent = `$${checkoutData.orderSummary.shipping.toFixed(2)}`;
-    if (taxElement) taxElement.textContent = `$${checkoutData.orderSummary.tax.toFixed(2)}`;
-    if (totalElement) totalElement.textContent = `$${checkoutData.orderSummary.total.toFixed(2)}`;
+    if (subtotalElement) subtotalElement.textContent = `₹${(checkoutData.orderSummary.subtotal * 75).toFixed(2)}`;
+    if (shippingElement) shippingElement.textContent = `₹${(checkoutData.orderSummary.shipping * 75).toFixed(2)}`;
+    if (taxElement) taxElement.textContent = `₹${(checkoutData.orderSummary.tax * 75).toFixed(2)}`;
+    if (totalElement) totalElement.textContent = `₹${(checkoutData.orderSummary.total * 75).toFixed(2)}`;
 }
 
 // Initialize the application when the DOM is loaded

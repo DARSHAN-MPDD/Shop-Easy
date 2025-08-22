@@ -51,7 +51,7 @@ function renderOrdersTable() {
             <td>#${order.id}</td>
             <td>${order.customer}</td>
             <td>${order.date}</td>
-            <td>$${order.total.toFixed(2)}</td>
+            <td>₹${(order.total * 75).toFixed(2)}</td>
             <td>
                 <select class="status-select" data-order-id="${order.id}">
                     <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
@@ -101,7 +101,7 @@ function viewOrderDetails(orderId) {
     // In a real application, this would show a modal or navigate to a details page
     const order = adminOrders.find(o => o.id === orderId);
     if (order) {
-        alert(`Order Details:\nOrder ID: #${order.id}\nCustomer: ${order.customer}\nDate: ${order.date}\nTotal: $${order.total.toFixed(2)}\nStatus: ${order.status}`);
+        alert(`Order Details:\nOrder ID: #${order.id}\nCustomer: ${order.customer}\nDate: ${order.date}\nTotal: ₹${(order.total * 75).toFixed(2)}\nStatus: ${order.status}`);
     }
 }
 
