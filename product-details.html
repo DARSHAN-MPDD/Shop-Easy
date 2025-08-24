@@ -13,6 +13,19 @@
     <header>
         <nav>
             <div class="logo">ShopEasy</div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="login-icon" id="loginIcon">
+                <span><i class="fas fa-user"></i></span>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html" style="text-decoration: none; color: inherit;">
+                    <span><i class="fas fa-shopping-cart"></i> Cart</span>
+                </a>
+            </div>
             <ul>
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
@@ -23,14 +36,6 @@
             <div class="search-bar">
                 <input type="text" placeholder="Search products...">
                 <button>Search</button>
-            </div>
-            <div class="login-icon" id="loginIcon">
-                <span><i class="fas fa-user"></i></span>
-            </div>
-            <div class="cart-icon">
-                <a href="cart.html" style="text-decoration: none; color: inherit;">
-                    <span><i class="fas fa-shopping-cart"></i> Cart</span>
-                </a>
             </div>
         </nav>
     </header>
@@ -121,5 +126,72 @@
         });
     </script>
     <script src="scripts/product-details.js"></script>
+    <script>
+        // Update cart count when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartCountElement = document.querySelector('.cart-icon span');
+            if (cartCountElement) {
+                // Get cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
+            }
+            
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.querySelector('nav ul');
+            
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('show');
+                    
+                    // Animate hamburger icon
+                    const spans = menuToggle.querySelectorAll('span');
+                    if (navMenu.classList.contains('show')) {
+                        spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                        spans[1].style.opacity = '0';
+                        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                    } else {
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        
+                        // Reset hamburger icon
+                        const spans = menuToggle.querySelectorAll('span');
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                });
+            }
+            
+            // Header behavior on scroll
+            let lastScrollTop = 0;
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down and past 100px, hide header slightly
+                    header.style.transform = 'translateY(-10px)';
+                    header.style.opacity = '0.95';
+                } else {
+                    // Scrolling up or at top, show header fully
+                    header.style.transform = 'translateY(0)';
+                    header.style.opacity = '1';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
 </body>
 </html>

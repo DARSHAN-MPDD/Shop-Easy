@@ -28,6 +28,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    max-height: 100vh;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    transform: translateZ(0); /* Enable hardware acceleration */
 }
 
 nav {
@@ -512,6 +516,30 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Mobile menu toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: #333;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: center;
+}
+
 /* Login icon styles */
 .login-icon {
     margin-right: 20px;
@@ -775,31 +803,12 @@ html {
 
 .wishlist {
     background-color: #fff;
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(10px, 10px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
     color: #007bff;
     border: 1px solid #007bff;
+}
+
+.wishlist:hover {
+    background-color: #f0f8ff;
 }
 
 /* Animation Styles */
@@ -886,6 +895,30 @@ html {
     }
 }
 
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
 /* Apply animations to various elements */
 .fade-in {
     animation: fadeIn 0.6s ease-out forwards;
@@ -918,10 +951,6 @@ html {
 
 .delay-5 {
     animation-delay: 0.5s;
-}
-
-.wishlist:hover {
-    background-color: #f0f8ff;
 }
 
 .related-products {
@@ -1115,27 +1144,70 @@ html {
 
 /* Responsive Design Adjustments */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        order: 2;
+        margin-right: 10px;
+    }
+    
     nav {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0.5rem 1rem;
+    }
+    
+    .logo {
+        order: 1;
+        flex: 1;
+        font-size: 1.5rem;
+    }
+    
+    .login-icon {
+        order: 3;
+        margin-right: 10px;
+        font-size: 1rem;
+    }
+    
+    .cart-icon {
+        order: 4;
+        font-size: 1rem;
     }
     
     nav ul {
-        margin: 1rem 0;
+        order: 5;
+        width: 100%;
+        margin: 0.5rem 0;
         flex-wrap: wrap;
+        justify-content: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+    
+    nav ul.show {
+        max-height: 300px;
+        transition: max-height 0.5s ease-in;
     }
     
     nav ul li {
-        margin: 0.5rem 1rem 0.5rem 0;
+        margin: 0.25rem 0.5rem;
     }
     
     .search-bar {
+        order: 6;
         width: 100%;
-        margin-top: 1rem;
+        margin: 0.5rem 0;
     }
     
     .search-bar input {
-        width: calc(100% - 100px);
+        width: calc(100% - 80px);
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+    
+    .search-bar button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
     }
     
     .hero h1 {
@@ -1365,6 +1437,33 @@ html {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 0.5rem;
+    }
+    
+    nav {
+        padding: 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    nav ul li {
+        margin: 0.2rem 0.3rem;
+        font-size: 0.9rem;
+    }
+    
+    .search-bar input {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+    
+    .search-bar button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
     .hero h1 {
         font-size: 1.5rem;
     }
@@ -1975,365 +2074,13 @@ html {
     }
 }
 
-/* Admin Dashboard Styles */
-.admin-dashboard {
-    padding: 2rem 0;
-}
-
-.admin-dashboard h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-}
-
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.dashboard-section {
-    background: #fff;
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.dashboard-section h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    color: #333;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 0.5rem;
-}
-
-/* Sales Summary Styles */
-.sales-summary {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.summary-card {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
-.summary-card:hover {
-    transform: translateY(-5px);
-}
-
-.summary-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #666;
-}
-
-.summary-value {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 0.5rem;
-}
-
-.summary-change {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.summary-change.positive {
-    color: #28a745;
-}
-
-.summary-change.negative {
-    color: #dc3545;
-}
-
-/* Recent Orders Styles */
-.recent-orders {
-    overflow-x: auto;
-}
-
-.recent-orders table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.recent-orders th,
-.recent-orders td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-.recent-orders th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    color: #333;
-}
-
-.recent-orders tr:hover {
-    background-color: #f8f9fa;
-}
-
-.status {
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.status.delivered {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.status.shipped {
-    background-color: #cce7ff;
-    color: #004085;
-}
-
-.status.processing {
-    background-color: #fff3cd;
-    color: #856404;
-}
-
-.status.pending {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* Top Products Styles */
-.top-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.product-item {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
-.product-item:hover {
-    transform: translateY(-3px);
-}
-
-.product-image {
-    flex: 0 0 80px;
-    height: 80px;
-    margin-right: 1rem;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.product-info h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-}
-
-.product-sales {
-    font-size: 0.9rem;
-    color: #666;
-}
-
 /* Responsive adjustments for dashboard items */
 @media (max-width: 992px) {
     .dashboard-items {
         flex-direction: column;
     }
-/* Admin Dashboard Responsive Adjustments */
-    .admin-dashboard h1 {
-        font-size: 2rem;
-    }
-    
-    .dashboard-section {
-        padding: 1.5rem;
-    }
-    
-    .dashboard-section h2 {
-        font-size: 1.5rem;
-    }
-    
-    .sales-summary {
-        grid-template-columns: 1fr;
-    }
-    
-    .summary-card {
-        padding: 1rem;
-    }
-    
-    .summary-value {
-        font-size: 1.5rem;
-    }
-    
-    .recent-orders th,
-    .recent-orders td {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-    }
-    
-    .top-products {
-        grid-template-columns: 1fr;
-    }
-    
-    .product-item {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .product-image {
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
 }
 
-/* Additional Admin Dashboard Responsive Adjustments for 768px and smaller */
-@media (max-width: 768px) {
-    .admin-dashboard h1 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .dashboard-section {
-        padding: 1.2rem;
-    }
-    
-    .dashboard-section h2 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-    }
-    
-    .sales-summary {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .summary-card {
-        padding: 0.8rem;
-    }
-    
-    .summary-card h3 {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .summary-value {
-        font-size: 1.3rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .summary-change {
-        font-size: 0.8rem;
-    }
-    
-    .recent-orders {
-        overflow-x: auto;
-    }
-    
-    .recent-orders table {
-        min-width: 600px;
-    }
-    
-    .recent-orders th,
-    .recent-orders td {
-        padding: 0.6rem;
-        font-size: 0.85rem;
-    }
-    
-    .status {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.5rem;
-    }
-    
-    .top-products {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .product-item {
-        flex-direction: column;
-        text-align: center;
-        padding: 0.8rem;
-    }
-    
-    .product-image {
-        margin-right: 0;
-        margin-bottom: 0.8rem;
-        height: 70px;
-    }
-    
-    .product-info h4 {
-        font-size: 1rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .product-sales {
-        font-size: 0.8rem;
-    }
-}
-
-/* Additional Admin Dashboard Responsive Adjustments for 480px and smaller */
-@media (max-width: 480px) {
-    .admin-dashboard h1 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .dashboard-section {
-        padding: 1rem;
-    }
-    
-    .dashboard-section h2 {
-        font-size: 1.2rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .summary-card {
-        padding: 0.7rem;
-    }
-    
-    .summary-card h3 {
-        font-size: 0.9rem;
-    }
-    
-    .summary-value {
-        font-size: 1.1rem;
-    }
-    
-    .recent-orders th,
-    .recent-orders td {
-        padding: 0.5rem;
-        font-size: 0.75rem;
-    }
-    
-    .product-item {
-        padding: 0.7rem;
-    }
-    
-    .product-image {
-        height: 60px;
-    }
-    
-    .product-info h4 {
-        font-size: 0.9rem;
-    }
-}
 /* Add to Cart Notification */
 .cart-notification {
     position: fixed;
@@ -2378,6 +2125,15 @@ html {
 /* Highlight effect for newly added items */
 .cart-item.highlight {
     animation: highlight 2s ease-out;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: rgba(255, 255, 0, 0.2);
+    }
+    100% {
+        background-color: transparent;
+    }
 }
 
 /* Additional Cart Item Animations */
@@ -2427,14 +2183,6 @@ html {
     animation-delay: 1.0s;
 }
 
-@keyframes highlight {
-    0% {
-        background-color: rgba(255, 255, 0, 0.2);
-    }
-    100% {
-        background-color: transparent;
-    }
-}
 /* Contact Page Styles */
 .contact {
     padding: 2rem 0;
@@ -2658,6 +2406,7 @@ html {
         padding: 1.5rem;
     }
 }
+
 /* Category Link Styles */
 .category-link {
     text-decoration: none;
