@@ -10,34 +10,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">ShopEasy</div>
-            <button class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="login-icon" id="loginIcon">
-                <span><i class="fas fa-user"></i></span>
+    <!-- Top Navigation Bar -->
+    <header class="top-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>ShopEasy</h1>
+                </div>
+                
+                <div class="header-controls">
+                    <div class="user-controls">
+                        <div class="login-icon" id="loginIcon">
+                            <a href="login.html" style="text-decoration: none; color: inherit;">
+                                <span><i class="fas fa-user"></i></span>
+                            </a>
+                        </div>
+                        <div class="cart-icon">
+                            <a href="cart.html" style="text-decoration: none; color: inherit;">
+                                <span><i class="fas fa-shopping-cart"></i> Cart</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search products...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
             </div>
-            <div class="cart-icon">
-                <a href="cart.html" style="text-decoration: none; color: inherit;">
-                    <span><i class="fas fa-shopping-cart"></i> Cart</span>
-                </a>
-            </div>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
-                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
-                <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
-            </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search products...">
-                <button>Search</button>
-            </div>
-        </nav>
+            
+            <nav class="main-nav">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
+                    <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                    <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
         <section class="cart">

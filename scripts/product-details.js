@@ -359,7 +359,7 @@ function renderRelatedProducts() {
                 <!-- Convert price from USD to INR (assuming 1 USD = 75 INR) -->
                 <div class="product-price">₹${(product.price * 75).toFixed(2)}</div>
                 <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-                <button class="buy-now" data-id="${product.id}">Buy Now</button>
+                <button class="continue-buying" data-id="${product.id}">Continue Buying</button>
             </div>
         `;
         productGrid.appendChild(productCard);
@@ -373,20 +373,11 @@ function renderRelatedProducts() {
         });
     });
     
-    // Add event listeners to "Buy Now" buttons
-    document.querySelectorAll('.related-products .buy-now').forEach(button => {
+    // Add event listeners to "Continue Buying" buttons
+    document.querySelectorAll('.related-products .continue-buying').forEach(button => {
         button.addEventListener('click', function() {
-            const productId = parseInt(this.getAttribute('data-id'));
-            // Add animation class to the product card when buying now
-            const productCard = this.closest('.product-card');
-            if (productCard) {
-                productCard.classList.add('buy-now-selected');
-                setTimeout(() => {
-                    productCard.classList.remove('buy-now-selected');
-                }, 1000);
-            }
-            // Redirect to product details page
-            window.location.href = `product-details.html?id=${productId}`;
+            // Redirect to checkout page
+            window.location.href = 'checkout.html';
         });
     });
 }
@@ -504,14 +495,13 @@ function handleAddToCart() {
     }
 }
 
-// Function to handle "Add to Wishlist" button
-function handleAddToWishlist() {
-    const wishlistButton = document.querySelector('.product-actions .wishlist');
+// Function to handle "Continue Buying" button
+function handleContinueBuying() {
+    const continueBuyingButton = document.querySelector('.product-actions .continue-buying');
     
-    if (wishlistButton) {
-        wishlistButton.addEventListener('click', function() {
-            alert(`${product.name} added to wishlist!`);
-            // In a real application, this would interact with a backend
+    if (continueBuyingButton) {
+        continueBuyingButton.addEventListener('click', function() {
+            window.location.href = 'checkout.html';
         });
     }
 }
@@ -553,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderRelatedProducts();
     handleSearch();
     handleAddToCart();
-    handleAddToWishlist();
+    handleContinueBuying();
     
     // Initialize login icon when DOM is loaded
     const loginIcon = document.getElementById('loginIcon');

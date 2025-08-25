@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse our home and kitchen products. Find appliances, furniture, and everything you need for your home.">
-    <meta name="keywords" content="home, kitchen, appliances, furniture, home goods">
-    <title>Home & Kitchen - ShopEasy</title>
+    <meta name="description" content="User login page for ShopEasy. Access your account to view order history, saved addresses, and wishlist.">
+    <meta name="keywords" content="user login, account, order history, saved addresses, wishlist">
+    <title>User Login - ShopEasy</title>
     <link rel="stylesheet" href="styles/main.css?v=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -21,9 +21,7 @@
                 <div class="header-controls">
                     <div class="user-controls">
                         <div class="login-icon" id="loginIcon">
-                            <a href="login.html" style="text-decoration: none; color: inherit;">
-                                <span><i class="fas fa-user"></i></span>
-                            </a>
+                            <span><i class="fas fa-user"></i> Login</span>
                         </div>
                         <div class="cart-icon">
                             <a href="cart.html" style="text-decoration: none; color: inherit;">
@@ -33,8 +31,8 @@
                     </div>
                     
                     <div class="search-bar">
-                        <input type="text" placeholder="Search products...">
-                        <button><i class="fas fa-search"></i></button>
+                        <input type="text" id="search-input" placeholder="Search products...">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </div>
@@ -56,33 +54,64 @@
         </div>
     </header>
     <main>
-        <section class="product-listings">
+        <section class="account">
             <div class="container">
-                <h1>Home & Kitchen</h1>
-                
-                <!-- Filter and Sort Options -->
-                <div class="filters">
-                    <div class="filter-group">
-                        <label for="sort-by">Sort by:</label>
-                        <select id="sort-by">
-                            <option value="featured">Featured</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="rating">Top Rated</option>
-                            <option value="newest">Newest Arrivals</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label for="price-range">Price Range:</label>
-                        <input type="range" id="price-range" min="0" max="1000" value="1000">
-                        <span id="price-range-value">₹0 - ₹75,000</span>
-                    </div>
+                <div class="auth-tabs">
+                    <button class="tab-button active" data-tab="login">Login</button>
+                    <button class="tab-button" data-tab="register">Register</button>
                 </div>
                 
-                <!-- Product Grid -->
-                <div class="product-grid" id="product-grid">
-                    <!-- Product items will be added here by JavaScript -->
+                <div class="account-container">
+                    <!-- Login Form -->
+                    <div class="auth-form active" id="login-form">
+                        <h2>Login to Your Account</h2>
+                        <form id="user-login-form">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="auth-button">Login</button>
+                            </div>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </form>
+                    </div>
+                    
+                    <!-- Registration Form -->
+                    <div class="auth-form" id="register-form">
+                        <h2>Create an Account</h2>
+                        <form id="user-register-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name">First Name *</label>
+                                    <input type="text" id="first-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last-name">Last Name *</label>
+                                    <input type="text" id="last-name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-email">Email Address *</label>
+                                <input type="email" id="reg-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-password">Password *</label>
+                                <input type="password" id="reg-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password *</label>
+                                <input type="password" id="confirm-password" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="auth-button">Register</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -91,22 +120,48 @@
         <p>&copy; 2025 ShopEasy. All rights reserved.</p>
     </footer>
     <script>
-        // Update cart count when page loads
+        // Tab switching functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const cartCountElement = document.querySelector('.cart-icon span');
-            if (cartCountElement) {
-                // Get cart items from localStorage
-                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-                cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const authForms = document.querySelectorAll('.auth-form');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and forms
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    authForms.forEach(form => form.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Show the corresponding form
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-form`).classList.add('active');
+                });
+            });
+            
+            // Form submission handlers would go here
+            // For now, we'll just prevent default submission
+            const loginForm = document.getElementById('user-login-form');
+            const registerForm = document.getElementById('user-register-form');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Login logic would go here
+                    alert('Login functionality would be implemented here');
+                });
             }
-        });
-    </script>
-    <script src="scripts/products.js"></script>
-    <script src="scripts/home.js"></script>
-    <script>
-        // Update cart count when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+            
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Registration logic would go here
+                    alert('Registration functionality would be implemented here');
+                });
+            }
+            
+            // Update cart count when page loads
             const cartCountElement = document.querySelector('.cart-icon span');
             if (cartCountElement) {
                 // Get cart items from localStorage

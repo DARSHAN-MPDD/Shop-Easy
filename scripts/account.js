@@ -44,171 +44,42 @@ const wishlistItems = [
     }
 ];
 
-// Function to handle tab switching
-function handleTabSwitching() {
-    const tabButtons = document.querySelectorAll('.tab-button');
+// Function to populate user information
+function populateUserInfo() {
+    const user = JSON.parse(localStorage.getItem('user'));
     
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tab = this.getAttribute('data-tab');
-            
-            // Remove active class from all buttons and forms
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-            
-            // Add active class to clicked button and corresponding form
-            this.classList.add('active');
-            document.getElementById(`${tab}-form`).classList.add('active');
-        });
-    });
+    if (user) {
+        // Populate basic user info
+        document.getElementById('user-name').textContent = `${user.firstName} ${user.lastName}`;
+        document.getElementById('user-email').textContent = user.email;
+        document.getElementById('full-name').textContent = `${user.firstName} ${user.lastName}`;
+        document.getElementById('email').textContent = user.email;
+        
+        // Set default values for other fields
+        document.getElementById('phone').textContent = "+1 (555) 123-4567";
+        document.getElementById('dob').textContent = "January 1, 1990";
+        document.getElementById('member-since').textContent = "January 1, 2023";
+    }
 }
 
-// Function to handle login form submission
-function handleLogin() {
-  const loginForm = document.getElementById('login-form');
-  
-  if (loginForm) {
-    loginForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
-      
-      // Validate inputs
-      if (!email || !password) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-      
-      try {
-        console.log('Attempting to login user:', { email });
-        // Send login request to backend
-        const response = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, password })
-        });
-        
-        console.log('Response status:', response.status);
-        console.log('Response headers:', [...response.headers.entries()]);
-        
-        const data = await response.json();
-        console.log('Response data:', data);
-        
-        if (response.ok) {
-          // Store token in localStorage
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify({
-            id: data._id,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email
-          }));
-          
-          // Hide auth section and show account dashboard
-          document.getElementById('auth-section').style.display = 'none';
-          document.getElementById('account-dashboard').style.display = 'block';
-          
-          // Render account dashboard content
-          setTimeout(() => {
-            renderOrderHistory();
-            renderSavedAddresses();
-            renderWishlist();
-          }, 100);
-        } else {
-          alert(data.message || 'Login failed');
-        }
-      } catch (error) {
-        console.error('Login error:', error);
-        // Provide more detailed error message
-        if (error instanceof TypeError && error.message.includes('fetch')) {
-          alert('Network error: Unable to connect to the server. Please make sure the server is running.');
-        } else {
-          alert('An error occurred during login. Please try again. Error: ' + error.message);
-        }
-      }
-    });
-  }
+// Function to handle logout
+function handleLogout() {
+    // Remove user data from localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    
+    // Redirect to home page or login page
+    window.location.href = 'index.html';
 }
 
-// Function to handle signup form submission
-function handleSignup() {
-  const signupForm = document.getElementById('signup-form');
-  
-  if (signupForm) {
-    signupForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('signup-email').value;
-      const firstName = document.getElementById('signup-first-name').value;
-      const lastName = document.getElementById('signup-last-name').value;
-      const password = document.getElementById('signup-password').value;
-      const confirmPassword = document.getElementById('signup-confirm-password').value;
-      
-      // Validate inputs
-      if (!email || !firstName || !lastName || !password || !confirmPassword) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-      
-      if (password !== confirmPassword) {
-        alert('Passwords do not match.');
-        return;
-      }
-      
-      try {
-        console.log('Attempting to register user:', { firstName, lastName, email });
-        // Send signup request to backend
-        const response = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ firstName, lastName, email, password, confirmPassword })
-        });
-        
-        console.log('Response status:', response.status);
-        console.log('Response headers:', [...response.headers.entries()]);
-        
-        const data = await response.json();
-        console.log('Response data:', data);
-        
-        if (response.ok) {
-          // Store token in localStorage
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify({
-            id: data._id,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email
-          }));
-          
-          // Hide auth section and show account dashboard
-          document.getElementById('auth-section').style.display = 'none';
-          document.getElementById('account-dashboard').style.display = 'block';
-          
-          // Render account dashboard content
-          setTimeout(() => {
-            renderOrderHistory();
-            renderSavedAddresses();
-            renderWishlist();
-          }, 100);
-        } else {
-          alert(data.message || 'Registration failed');
-        }
-      } catch (error) {
-        console.error('Signup error:', error);
-        // Provide more detailed error message
-        if (error instanceof TypeError && error.message.includes('fetch')) {
-          alert('Network error: Unable to connect to the server. Please make sure the server is running.');
-        } else {
-          alert('An error occurred during registration. Please try again. Error: ' + error.message);
-        }
-      }
-    });
-  }
+// Function to handle edit profile
+function handleEditProfile() {
+    alert('Edit profile functionality would be implemented here.');
+}
+
+// Function to handleChangePassword
+function handleChangePassword() {
+    alert('Change password functionality would be implemented here.');
 }
 
 // Function to render order history
@@ -328,8 +199,9 @@ function checkLoggedIn() {
   const user = localStorage.getItem('user');
   
   if (token && user) {
-    // User is logged in, show account dashboard
-    document.getElementById('auth-section').style.display = 'none';
+    // User is logged in, populate user info and show account dashboard
+    populateUserInfo();
+    document.getElementById('user-info-section').style.display = 'block';
     document.getElementById('account-dashboard').style.display = 'block';
     
     // Render account dashboard content
@@ -338,16 +210,33 @@ function checkLoggedIn() {
       renderSavedAddresses();
       renderWishlist();
     }, 100);
+  } else {
+    // User is not logged in, redirect to home page
+    window.location.href = 'index.html';
   }
 }
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-  handleTabSwitching();
-  handleLogin();
-  handleSignup();
   handleSearch();
   checkLoggedIn();
+  
+  // Add event listeners for account action buttons
+  const editProfileBtn = document.querySelector('.edit-profile-btn');
+  const changePasswordBtn = document.querySelector('.change-password-btn');
+  const logoutBtn = document.querySelector('.logout-btn');
+  
+  if (editProfileBtn) {
+    editProfileBtn.addEventListener('click', handleEditProfile);
+  }
+  
+  if (changePasswordBtn) {
+    changePasswordBtn.addEventListener('click', handleChangePassword);
+  }
+  
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', handleLogout);
+  }
   
   // Initialize login icon when DOM is loaded
   const loginIcon = document.getElementById('loginIcon');

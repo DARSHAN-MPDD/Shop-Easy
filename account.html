@@ -3,107 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your account page with login/signup, order history, saved addresses, and wishlist. Manage your personal information and preferences.">
-  <meta name="keywords" content="account, login, signup, order history, saved addresses, wishlist, personal information">
+  <meta name="description" content="Your account page with user information, order history, saved addresses, and wishlist. Manage your personal information and preferences.">
+  <meta name="keywords" content="account, user information, order history, saved addresses, wishlist, personal information">
   <title>Account - ShopEasy</title>
   <link rel="stylesheet" href="styles/main.css?v=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">ShopEasy</div>
-            <button class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="login-icon" id="loginIcon">
-                <span><i class="fas fa-user"></i></span>
+    <!-- Top Navigation Bar -->
+    <header class="top-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>ShopEasy</h1>
+                </div>
+                
+                <div class="header-controls">
+                    <div class="user-controls">
+                        <div class="login-icon" id="loginIcon">
+                            <a href="login.html" style="text-decoration: none; color: inherit;">
+                                <span><i class="fas fa-user"></i> Account</span>
+                            </a>
+                        </div>
+                        <div class="cart-icon">
+                            <a href="cart.html" style="text-decoration: none; color: inherit;">
+                                <span><i class="fas fa-shopping-cart"></i> Cart</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search products...">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
             </div>
-            <div class="cart-icon">
-                <a href="cart.html" style="text-decoration: none; color: inherit;">
-                    <span><i class="fas fa-shopping-cart"></i> Cart</span>
-                </a>
-            </div>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
-                <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
-                <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
-            </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search products...">
-                <button>Search</button>
-            </div>
-        </nav>
+            
+            <nav class="main-nav">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a></li>
+                    <li><a href="categories.html"><i class="fas fa-list"></i> Categories</a></li>
+                    <li><a href="deals.html"><i class="fas fa-tag"></i> Deals</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+    
     <main>
         <section class="account">
             <div class="container">
                 <h1>My Account</h1>
                 
                 <div class="account-container">
-                    <!-- Login/Signup Section -->
-                    <div class="account-section" id="auth-section">
-                        <div class="auth-tabs">
-                            <button class="tab-button active" data-tab="login">Login</button>
-                            <button class="tab-button" data-tab="signup">Sign Up</button>
-                        </div>
-                        
-                        <div class="auth-form active" id="login-form">
-                            <h2>Login to Your Account</h2>
-                            <form>
-                                <div class="form-group">
-                                    <label for="login-email">Email Address *</label>
-                                    <input type="email" id="login-email" required>
+                    <!-- User Information Section -->
+                    <div class="account-section" id="user-info-section">
+                        <h2>User Information</h2>
+                        <div class="user-info-content">
+                            <div class="user-details">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-circle fa-5x"></i>
                                 </div>
-                                <div class="form-group">
-                                    <label for="login-password">Password *</label>
-                                    <input type="password" id="login-password" required>
+                                <div class="user-basic-info">
+                                    <h3 id="user-name">John Doe</h3>
+                                    <p id="user-email">john.doe@example.com</p>
+                                    <p class="member-since">Member since: <span id="member-since">January 1, 2023</span></p>
                                 </div>
-                                <div class="form-group">
-                                    <button type="submit" class="auth-button">Login</button>
+                            </div>
+                            
+                            <div class="user-profile-details">
+                                <h3>Profile Details</h3>
+                                <div class="profile-item">
+                                    <span class="profile-label">Full Name:</span>
+                                    <span class="profile-value" id="full-name">John Doe</span>
                                 </div>
-                                <a href="#" class="forgot-password">Forgot Password?</a>
-                            </form>
-                        </div>
-                        
-                        <div class="auth-form" id="signup-form">
-                            <h2>Create an Account</h2>
-                            <form>
-                                <div class="form-group">
-                                    <label for="signup-email">Email Address *</label>
-                                    <input type="email" id="signup-email" required>
+                                <div class="profile-item">
+                                    <span class="profile-label">Email:</span>
+                                    <span class="profile-value" id="email">john.doe@example.com</span>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="signup-first-name">First Name *</label>
-                                        <input type="text" id="signup-first-name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="signup-last-name">Last Name *</label>
-                                        <input type="text" id="signup-last-name" required>
-                                    </div>
+                                <div class="profile-item">
+                                    <span class="profile-label">Phone:</span>
+                                    <span class="profile-value" id="phone">+1 (555) 123-4567</span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="signup-password">Password *</label>
-                                    <input type="password" id="signup-password" required>
+                                <div class="profile-item">
+                                    <span class="profile-label">Date of Birth:</span>
+                                    <span class="profile-value" id="dob">January 1, 1990</span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="signup-confirm-password">Confirm Password *</label>
-                                    <input type="password" id="signup-confirm-password" required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="auth-button">Sign Up</button>
-                                </div>
-                            </form>
+                            </div>
+                            
+                            <div class="account-actions">
+                                <button class="edit-profile-btn">Edit Profile</button>
+                                <button class="change-password-btn">Change Password</button>
+                                <button class="logout-btn">Logout</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Account Dashboard (Hidden by default) -->
-                    <div class="account-section" id="account-dashboard" style="display: none;">
+                    <!-- Account Dashboard -->
+                    <div class="account-section" id="account-dashboard">
                         <h2>Account Dashboard</h2>
                         <div class="dashboard-content">
                             <div class="dashboard-items">
@@ -175,18 +178,6 @@
                                         <div class="wishlist-item">
                                             <div class="item-image">
                                                 <img src="assets/smartwatch.jpg" alt="Smart Watch">
-<script>
-        // Update cart count when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const cartCountElement = document.querySelector('.cart-icon span');
-            if (cartCountElement) {
-                // Get cart items from localStorage
-                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-                cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
-            }
-        });
-    </script>
                                             </div>
                                             <div class="item-details">
                                                 <h4>Smart Watch</h4>

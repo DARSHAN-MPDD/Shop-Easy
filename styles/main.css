@@ -33,6 +33,118 @@ header {
     transition: all 0.3s ease;
     transform: translateZ(0); /* Enable hardware acceleration */
 }
+/* New Top Header Styles */
+.top-header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+}
+
+.top-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main-nav {
+    border-top: 1px solid #eee;
+    padding: 0.5rem 0;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu li {
+    margin: 0 1rem;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-menu li a:hover {
+    color: #007bff;
+}
+
+.search-bar {
+    display: flex;
+    margin: 0;
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    width: 100%;
+}
+
+.search-bar button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.cart-icon {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon i {
+    margin-right: 5px;
+}
+
+/* Updated Header Styles */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    max-height: 100vh;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+}
 
 nav {
     display: flex;
@@ -801,6 +913,29 @@ html {
     background-color: #0056b3;
 }
 
+.continue-buying {
+    padding: 0.7rem 1.5rem;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.3);
+}
+
+.continue-buying:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.continue-buying:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.3);
+}
+
 .wishlist {
     background-color: #fff;
     color: #007bff;
@@ -809,6 +944,31 @@ html {
 
 .wishlist:hover {
     background-color: #f0f8ff;
+}
+
+/* Continue Shopping Button Enhancements */
+.continue-shopping {
+    padding: 1rem;
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(108, 117, 125, 0.3);
+}
+
+.continue-shopping:hover {
+    background: linear-gradient(135deg, #5a6268, #495057);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.4);
+}
+
+.continue-shopping:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(108, 117, 125, 0.3);
 }
 
 /* Animation Styles */
@@ -2423,4 +2583,62 @@ html {
 .category-link:focus {
     outline: 2px solid #007bff;
     outline-offset: 2px;
+}
+
+/* Checkout Page Button Styles */
+.paypal-button,
+.apple-pay-button,
+.place-order-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.paypal-button {
+    background: linear-gradient(135deg, #0070ba, #005b96);
+    color: #fff;
+}
+
+.paypal-button:hover {
+    background: linear-gradient(135deg, #005b96, #00426d);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 112, 186, 0.3);
+}
+
+.apple-pay-button {
+    background: linear-gradient(135deg, #000000, #333333);
+    color: #fff;
+}
+
+.apple-pay-button:hover {
+    background: linear-gradient(135deg, #333333, #555555);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.place-order-button {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.place-order-button:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.paypal-button:active,
+.apple-pay-button:active,
+.place-order-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
